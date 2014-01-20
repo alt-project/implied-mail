@@ -1,6 +1,5 @@
 
 base = require './base'
-util = require '../../util'
 
 class Mailer extends base.Mailer
 
@@ -24,7 +23,15 @@ class Mailer extends base.Mailer
     files = opts.files or []
     delete opts.files
 
-    email = new @sendgrid.Email util.extend {}, defaults, opts
+    init = {}
+    
+    for k,v of defaults
+      init[k] = v
+    
+    for k,v of opts
+      init[k] = v
+
+    email = new @sendgrid.Email init
 
     for file in files
       email.addFile file
@@ -36,6 +43,7 @@ class Mailer extends base.Mailer
       callback?(err)
 
 module.exports = (app)->
+  console.log 'initializing'
   unless app.get('name')
     throw 'Please name your app. app.set("name",...)'
   app.set 'mailer', new Mailer app

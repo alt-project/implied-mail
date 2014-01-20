@@ -1,0 +1,13 @@
+{
+    "name": "implied-mail",
+    "version": "0.0.1",
+    "description": "Email convenience wrapper for implied.js",
+    "keywords": ["implied", "email"],
+    "repository": "git://github.com/countable/implied-mail",
+    "author": "Clark Van Oyen <clark@countable.ca>",
+    "main": "lib/mail.js",
+    "engines": { "node": ">= 0.4.0" },
+    "dependencies": {
+      "sendgrid": "~0.3.1"
+    }
+}
